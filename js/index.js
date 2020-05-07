@@ -4,6 +4,10 @@ const cancelButton = document.getElementById('cancel-button');
 const form = document.getElementById('questionForm');
 form.action = '/success_page.html';
 form.method = 'POST';
+let errorCount = 0;
+const answersList = document.querySelector('.form-bottom__answers');
+const errors = document.querySelector('.form-errors');
+
 /**
  * Initial answers when page renders
  */
@@ -13,12 +17,6 @@ const answers = [
     'Hydroxide reaction',
     'Single replacement reaction'
 ];
-
-/**
- * Get reference to answers div in DOM
- */
-const answersList = document.querySelector('.form-bottom__answers');
-const errors = document.querySelector('.form-errors');
 
 /**
  * Loop through the array and set the elements into the DOM
@@ -98,12 +96,17 @@ customAnswerButton.addEventListener('click', function(e) {
 }) 
     
 /**
- * Remove answer from array
+ * Remove answer from answers array and from the DOM
  * @param {Number} itemToRemove 
  */
-function removeAnswer( itemToRemove) {
-
+function removeAnswer(itemToRemove) {
+    // html element to remove
     const item = document.getElementById(itemToRemove);
+    // index in answers array to remove
+    const itemIndex = item.id;
+    // remove item from answers array
+    answers.splice(itemIndex, 1)
+    // remove item from DOM
     answersList.removeChild(item);
 }
 
@@ -115,8 +118,11 @@ saveButton.addEventListener('click', function(e) {
     e.preventDefault();
 
     const data = validateData();
+
     console.log('data', data)
-    // document.getElementById('questionForm').submit();
+    if (errorCount === 0) {
+        document.getElementById('questionForm').submit();
+    }
 });
 
 /**
@@ -150,6 +156,7 @@ function validateData() {
         const error = document.createElement('span');
         error.textContent = "Please type an answer to the question!"
         errors.appendChild(error);
+        errorCount += 1;
     }
 
     // verify that at least 1 multiple choice answer was selected or display error
@@ -157,8 +164,8 @@ function validateData() {
         const error = document.createElement('span');
         error.textContent = "Please select at least 1 answer or type your own!"
         errors.appendChild(error);
+        errorCount += 1;
     }
-
     return {
         longAnswer: longAnswer,
         multipleChoiceAnswer: multipleChoiceAnswer
