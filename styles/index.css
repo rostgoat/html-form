@@ -24,3 +24,117 @@ body {
     font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', ‘sans-serif’;
     color: 'black';   
 }
+
+form {
+    width: 80%;
+}
+
+button {
+    font-size: 1.6rem;
+}
+
+.form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10rem;
+}
+
+.form-section {
+    margin: 0 2rem;
+}
+
+.form-input {
+    border-radius: 5px;
+    border: none;
+    border: solid 1px #acacac;
+    text-indent: 1rem;
+
+    -moz-box-shadow: inset 0px 1px 2px 1px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: inset 0px 1px 2px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0px 1px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.form-input__top {
+    height: 3rem;
+    margin-bottom: 2rem;
+}
+
+.form-input__top--textarea {
+    height: 10rem;
+    margin-bottom: 2rem;
+}
+
+.form-top__label {
+    margin-bottom: 0.5rem;
+}
+
+.form-top__container {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-bottom__item {
+    display: flex;
+    align-items: center;
+    margin: 2rem 0;
+}
+
+.form-bottom__item-img {
+    width: 2rem;
+    height: 2rem;
+    margin-right: 1rem;
+}
+
+.form-bottom__item-radio-btn {
+    margin-right: 1rem;
+    height: 2rem;
+    width: 2rem;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.form-bottom__item-text {
+    flex-grow: 4;
+    height: 3rem;
+}
+
+.form-bottom__item-remove-btn {
+    margin-left: 2rem;
+    border: none;
+    background: none;
+}
+
+.form-bottom__add-answer-btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    color:  #0275d8;
+    font-weight: bold;
+}
+
+
+.form-buttons {
+    margin-top: 4rem;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.form-buttons__button {
+    border-radius: 8px;
+    height: 4rem;
+    width: 7rem;
+    border-style: solid;
+    cursor: pointer;
+}
+
+.form-buttons__button--save {
+    color: #ffffff;
+    background-color: #0275d8;
+}
+
+.form-buttons__button--cancel {
+    background-color: 	#cfcfcf;
+    margin-left: 2rem;
+}
+

@@ -1,44 +1,47 @@
 <!doctype html>
-
 <html lang="en">
 <head>
   <meta charset="utf-8">
-
-  <title>The HTML5 Herald</title>
-  <meta name="description" content="The HTML5 Herald">
-  <meta name="author" content="SitePoint">
-
-  <link rel="stylesheet" href="css/index.css?v=1.0">
-
+  <title>D2L Form</title>
+  <meta name="description" content="D2L Form">
+  <link rel="stylesheet" href="styles/index.css">
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
 </head>
-
 <body>
-    <script src="js/index.js"></script>
-
+<div class="form">
     <form action="">
-        <div class="form_top">
-            <label for="short_description">Short Description</label>
-            <input type="text" id="short_description" name="short_description" placeholder="Types of Reactions"><br><br>
-        
-            <label for="lname">Question Text *</label>
-            <textarea id="w3mission" rows="4" cols="50" placeholder="A reaction between an acid and a base is called a"></textarea>
-            
-            <label for="short_description">Hint</label>
-            <input type="text" id="short_description" name="short_description" placeholder="We did a lab experiment about this."><br><br>
-        </div>
-        <div class="form_bottom">
-            <div class="form_bottom__item">
-                
-                <input type="radio" id="huey" name="drone" value="huey"
-                    checked>
-                <label for="huey">Huey</label>
+        <div class="form-top form-section">
+            <div class="form-top__container">
+                <label class="form-top__label" for="description">Short Description</label>
+                <input class="form-input form-input__top" type="text" id="description" name="description" placeholder="Types of Reactions">
+            </div>
+            <div class="form-top__container">
+                <label class="form-top__label" for="question">Question Text *</label>
+                <textarea class="form-input form-input__top--textarea" id="question"  placeholder="A reaction between an acid and a base is called a"></textarea>
+            </div>
+            <div class="form-top__container">
+                <label class="form-top__label" for="hint">Hint</label>
+                <input class="form-input form-input__top" type="text" id="hint" name="hint" placeholder="We did a lab experiment about this.">
             </div>
         </div>
-
-    
-    
-        <input type="submit" value="Save">
-        <input type="cancel" value="Cancel">
+        <div class="form-bottom form-section">
+            <div class="form-bottom__title">Answers *</div>
+            <div class="form-bottom__item">
+                <img class="form-bottom__item-img" src="images/drag_icon.png" alt="drag_icon" />
+                <input class="form-bottom__item-radio-btn" type="radio" id="answer1" name="answer1" value="answer1" />
+                <div class="form-bottom__item-text form-input"></div>
+                <button class="form-bottom__item-remove-btn">&times;</button>
+            </div>
+            <div class="form-bottom__add-answer">
+                <button class="form-bottom__add-answer-btn">Add Answer</button>
+            </div>
+        </div>
+        <div class="form-buttons form-section">
+            <input class="form-buttons__button form-buttons__button--save" type="button" value="Save" onclick="submitForm()"></input>
+            <input class="form-buttons__button form-buttons__button--cancel" type="button" value="Cancel" onclick="cancelForm()"></input>
+        </div>
     </form>
+</div>
+<script src="js/index.js" async></script>
 </body>
 </html>
