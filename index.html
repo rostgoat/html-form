@@ -9,19 +9,19 @@
 </head>
 <body>
 <div class="form">
-    <form onsubmit="submitForm(event)">
+    <form id="questionForm">
         <div class="form-top form-section">
             <div class="form-top__container">
                 <label class="form-top__label" for="description">Short Description</label>
-                <input class="form-input form-input__top" type="text" id="description" name="description" placeholder="Types of Reactions">
+                <input class="form-input form-input__top" type="text" id="short_answer" name="short_answer" placeholder="Types of Reactions">
             </div>
             <div class="form-top__container">
                 <label class="form-top__label" for="question">Question Text *</label>
-                <textarea class="form-input form-input__top--textarea" id="question"  placeholder="A reaction between an acid and a base is called a"></textarea>
+                <textarea class="form-input form-input__top--textarea" id="long_answer" name="long_answer" placeholder="A reaction between an acid and a base is called a" ></textarea>
             </div>
             <div class="form-top__container">
                 <label class="form-top__label" for="hint">Hint</label>
-                <input class="form-input form-input__top" type="text" id="hint" name="hint" placeholder="We did a lab experiment about this.">
+                <div class="form-input form-input__top" id="hint">We did a lab experiment about this.</div>
             </div>
         </div>
         <div class="form-bottom form-section">
