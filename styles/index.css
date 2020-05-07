@@ -103,6 +103,8 @@ button {
     margin-left: 2rem;
     border: none;
     background: none;
+    font-size: 2.2rem;
+    cursor: pointer;
 }
 
 .form-bottom__add-answer-btn {

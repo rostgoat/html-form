@@ -9,7 +9,7 @@
 </head>
 <body>
 <div class="form">
-    <form action="">
+    <form onsubmit="submitForm(event)">
         <div class="form-top form-section">
             <div class="form-top__container">
                 <label class="form-top__label" for="description">Short Description</label>
@@ -26,12 +26,7 @@
         </div>
         <div class="form-bottom form-section">
             <div class="form-bottom__title">Answers *</div>
-            <div class="form-bottom__item">
-                <img class="form-bottom__item-img" src="images/drag_icon.png" alt="drag_icon" />
-                <input class="form-bottom__item-radio-btn" type="radio" id="answer1" name="answer1" value="answer1" />
-                <div class="form-bottom__item-text form-input"></div>
-                <button class="form-bottom__item-remove-btn">&times;</button>
-            </div>
+            <div class="form-bottom__answers"></div>
             <div class="form-bottom__add-answer">
                 <button class="form-bottom__add-answer-btn">Add Answer</button>
             </div>
