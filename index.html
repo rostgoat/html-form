@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <title>D2L Form</title>
   <meta name="description" content="D2L Form">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles/index.css">
   <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
 </head>
@@ -11,13 +12,14 @@
 <div class="form">
     <form id="questionForm">
         <div class="form-top form-section">
+            <div class="form-errors"></div>
             <div class="form-top__container">
                 <label class="form-top__label" for="description">Short Description</label>
-                <input class="form-input form-input__top" type="text" id="short_answer" name="short_answer" placeholder="Types of Reactions">
+                <div class="form-input form-input__top" type="text">Types of Reactions</div>
             </div>
             <div class="form-top__container">
                 <label class="form-top__label" for="question">Question Text *</label>
-                <textarea class="form-input form-input__top--textarea" id="long_answer" name="long_answer" placeholder="A reaction between an acid and a base is called a" ></textarea>
+                <textarea class="form-input form-input__top--textarea" id="long_answer" placeholder="A reaction between an acid and a base is called a" ></textarea>
             </div>
             <div class="form-top__container">
                 <label class="form-top__label" for="hint">Hint</label>
@@ -28,15 +30,15 @@
             <div class="form-bottom__title">Answers *</div>
             <div class="form-bottom__answers"></div>
             <div class="form-bottom__add-answer">
-                <button class="form-bottom__add-answer-btn">Add Answer</button>
+                <button id="add-custom-answer" class="form-bottom__add-answer-btn">Add Answer</button>
             </div>
         </div>
         <div class="form-buttons form-section">
-            <input class="form-buttons__button form-buttons__button--save" type="button" value="Save" onclick="submitForm()"></input>
-            <input class="form-buttons__button form-buttons__button--cancel" type="button" value="Cancel" onclick="cancelForm()"></input>
+            <button id="save-button" class="form-buttons__button form-buttons__button--save">Save</button>
+            <button id="cancel-button" class="form-buttons__button form-buttons__button--cancel">Cancel</button>
         </div>
     </form>
 </div>
-<script src="js/index.js" async></script>
+<script src="js/index.js" defer></script>
 </body>
 </html>

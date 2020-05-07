@@ -40,6 +40,14 @@ button {
     margin-top: 10rem;
 }
 
+.form-errors {
+    display: flex;
+    flex-direction: column;
+    background-color: red;
+    border-radius: 5px;
+    text-align: center;
+}
+
 .form-section {
     margin: 0 2rem;
 }
@@ -73,6 +81,8 @@ button {
     display: flex;
     flex-direction: column;
 }
+
+
 
 .form-bottom__item {
     display: flex;
