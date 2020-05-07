@@ -1,12 +1,11 @@
 const customAnswerButton = document.getElementById('add-custom-answer');
 const saveButton = document.getElementById('save-button');
 const cancelButton = document.getElementById('cancel-button');
-const form = document.getElementById('questionForm');
-form.action = '/success_page.html';
-form.method = 'POST';
-let errorCount = 0;
 const answersList = document.querySelector('.form-bottom__answers');
 const errors = document.querySelector('.form-errors');
+const form = document.getElementById('questionForm');
+let longAnswer = document.getElementById('long_answer');
+let errorCount = 0;
 
 /**
  * Initial answers when page renders
@@ -19,42 +18,47 @@ const answers = [
 ];
 
 /**
- * Loop through the array and set the elements into the DOM
+ * Initialize multiple choice answers when DOM renders
  */
-answers.forEach(function(answer, index) {
-    const item = document.createElement('div');
-    item.setAttribute('id', index);
-    item.setAttribute('class', 'form-bottom__item');
+function init() {
+    // Loop through the array and set the elements into the DOM
+    answers.forEach(function(answer, index) {
+        const item = document.createElement('div');
+        item.setAttribute('id', index);
+        item.setAttribute('class', 'form-bottom__item');
+    
+        const image = document.createElement('img');
+        image.setAttribute('class', 'form-bottom__item-img');
+        image.setAttribute('src', 'images/drag_icon.png');
+        image.setAttribute('alt', 'drag_icon.png');
+    
+        const radioInput = document.createElement('input');
+        radioInput.setAttribute('class', 'form-bottom__item-radio-btn');
+        radioInput.setAttribute('type', 'radio');
+        radioInput.setAttribute('name', 'mc-answer')
+        radioInput.setAttribute('value', `item_${index}`);
+    
+        const name = document.createElement('div');
+        name.setAttribute('class', 'form-bottom__item-text form-input');
+        name.appendChild(document.createTextNode(`${answer}`));
+    
+        const removeBtn = document.createElement('button');
+        removeBtn.setAttribute('class', 'form-bottom__item-remove-btn');
+        removeBtn.setAttribute('onClick', `removeAnswer("${index}")`);
+        removeBtn.appendChild(document.createTextNode('x'));
+    
+        item.appendChild(image);
+        item.appendChild(radioInput);
+        item.appendChild(name);
+        item.appendChild(removeBtn);
+    
+        answersList.appendChild(item);
+    });
+}
 
-    const image = document.createElement('img');
-    image.setAttribute('class', 'form-bottom__item-img');
-    image.setAttribute('src', 'images/drag_icon.png');
-    image.setAttribute('alt', 'drag_icon.png');
-
-    const radioInput = document.createElement('input');
-    radioInput.setAttribute('class', 'form-bottom__item-radio-btn');
-    radioInput.setAttribute('type', 'radio');
-    radioInput.setAttribute('name', 'mc-answer')
-    radioInput.setAttribute('value', `item_${index}`);
-
-    const name = document.createElement('div');
-    name.setAttribute('class', 'form-bottom__item-text form-input');
-    name.appendChild(document.createTextNode(`${answer}`));
-
-    const removeBtn = document.createElement('button');
-    removeBtn.setAttribute('class', 'form-bottom__item-remove-btn');
-    removeBtn.setAttribute('onClick', `removeAnswer("${index}")`);
-    removeBtn.appendChild(document.createTextNode('x'));
-
-    item.appendChild(image);
-    item.appendChild(radioInput);
-    item.appendChild(name);
-    item.appendChild(removeBtn);
-
-    answersList.appendChild(item);
-});
-
-
+/**
+ * Add custom multiple choice answer
+ */
 customAnswerButton.addEventListener('click', function(e) {
     e.preventDefault();
     
@@ -92,7 +96,6 @@ customAnswerButton.addEventListener('click', function(e) {
     item.appendChild(removeBtn);
 
     answersList.appendChild(item);
-    console.log('answersList', answersList)
 }) 
     
 /**
@@ -117,12 +120,15 @@ function removeAnswer(itemToRemove) {
 saveButton.addEventListener('click', function(e) {
     e.preventDefault();
 
+    // data to submit
     const data = validateData();
 
-    console.log('data', data)
+    // if no form errors exist, submit the form
     if (errorCount === 0) {
         document.getElementById('questionForm').submit();
     }
+    // reset error count for new submissions
+    errorCount = 0;
 });
 
 /**
@@ -130,8 +136,8 @@ saveButton.addEventListener('click', function(e) {
  */
 function validateData() {
     // get the answer from the question textarea
-    const longAnswer = document.getElementById('long_answer').value;
     let multipleChoiceAnswer;
+    longAnswer.value;
 
     // loop through all the multiple choice answers and find the selected one
     const array = Array.prototype.slice.call(answersList.querySelectorAll('.form-bottom__item'));
@@ -166,6 +172,8 @@ function validateData() {
         errors.appendChild(error);
         errorCount += 1;
     }
+
+    // return submission data
     return {
         longAnswer: longAnswer,
         multipleChoiceAnswer: multipleChoiceAnswer
@@ -177,6 +185,16 @@ function validateData() {
  */
 cancelButton.addEventListener('click', function(e) {
     e.preventDefault();
+    // remove text from question form
+    longAnswer.value = '';
 
-    console.log('clicked cancel');
+    // uncheck all radio buttons
+    const array = Array.prototype.slice.call(answersList.querySelectorAll('.form-bottom__item'));
+    array.forEach(function(item) {
+        const current = item.querySelector('.form-bottom__item-radio-btn');
+        current.checked = false;
+    })
 })
+
+// inialize page
+init();
