@@ -48,6 +48,9 @@ button {
     font-size: 1.6rem;
 }
 
+
+/* Form */
+
 .form {
     display: flex;
     align-items: center;
@@ -101,6 +104,8 @@ and (orientation : landscape) {
     box-shadow: inset 0px 1px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
+/* Top Section */
+
 .form-input__top {
     margin-bottom: 2rem;
 }
@@ -119,7 +124,7 @@ and (orientation : landscape) {
     flex-direction: column;
 }
 
-
+/* Bottom Section */
 
 .form-bottom__item {
     display: flex;
@@ -161,6 +166,7 @@ and (orientation : landscape) {
     font-weight: bold;
 }
 
+/* Save and Cancel buttons */
 
 .form-buttons {
     margin-top: 4rem;
@@ -186,6 +192,7 @@ and (orientation : landscape) {
     margin-left: 2rem;
 }
 
+/* Custom answer */
 .custom-input {
     height: 4rem;
     text-indent: 1rem;

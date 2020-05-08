@@ -31,23 +31,31 @@ function init() {
         image.setAttribute('class', 'form-bottom__item-img');
         image.setAttribute('src', 'images/drag_icon.png');
         image.setAttribute('alt', 'drag_icon.png');
+        image.setAttribute('role', 'asnwer icon')
+        image.setAttribute('aria-label', 'answer icon');
     
         const radioInput = document.createElement('input');
         radioInput.setAttribute('class', 'form-bottom__item-radio-btn');
         radioInput.setAttribute('type', 'radio');
         radioInput.setAttribute('name', 'mc-answer')
         radioInput.setAttribute('value', `item_${index}`);
+        radioInput.setAttribute('role', 'button')
+        radioInput.setAttribute('aria-label', 'answer radio button');
     
         const nameContainer = document.createElement('div');
         nameContainer.setAttribute('class', 'form-bottom__item-text form-input');
         
         const name = document.createElement('p');
         name.setAttribute('class', 'form-text');
+        name.setAttribute('role', 'asnwer option')
+        name.setAttribute('aria-label', 'answer option');
         name.appendChild(document.createTextNode(`${answer}`));
         
         const removeBtn = document.createElement('button');
         removeBtn.setAttribute('class', 'form-bottom__item-remove-btn');
         removeBtn.setAttribute('onClick', `removeAnswer("${index}")`);
+        removeBtn.setAttribute('role', 'button')
+        removeBtn.setAttribute('aria-label', 'remove answer')
         removeBtn.appendChild(document.createTextNode('x'));
         
         nameContainer.appendChild(name);
@@ -76,22 +84,28 @@ customAnswerButton.addEventListener('click', function(e) {
     image.setAttribute('class', 'form-bottom__item-img');
     image.setAttribute('src', 'images/drag_icon.png');
     image.setAttribute('alt', 'drag_icon.png');
+    image.setAttribute('role', 'asnwer icon')
+    image.setAttribute('aria-label', 'answer icon');
 
     const radioInput = document.createElement('input');
     radioInput.setAttribute('class', 'form-bottom__item-radio-btn');
     radioInput.setAttribute('type', 'radio');
     radioInput.setAttribute('name', 'mc-answer')
     radioInput.setAttribute('value', `item_${newIndex + 1}`);
+    radioInput.setAttribute('role', 'button')
+    radioInput.setAttribute('aria-label', 'answer radio button');
 
     const name = document.createElement('input');
     name.setAttribute('class', 'form-bottom__item-text form-input custom-input');
-    name.setAttribute('placeholder', 'Enter your answer here..');
+    name.setAttribute('placeholder', 'Enter your custom answer here..');
     name.setAttribute('type', 'input');
     name.setAttribute('value', '');
 
     const removeBtn = document.createElement('button');
     removeBtn.setAttribute('class', 'form-bottom__item-remove-btn');
     removeBtn.setAttribute('onClick', `removeAnswer("${newIndex + 1}")`);
+    removeBtn.setAttribute('role', 'button')
+    removeBtn.setAttribute('aria-label', 'remove answer')
     removeBtn.appendChild(document.createTextNode('x'));
 
     item.appendChild(image);
@@ -129,6 +143,7 @@ saveButton.addEventListener('click', function(e) {
 
     // if no form errors exist, submit the form
     if (errorCount === 0) {
+        // simulate form submission
         document.getElementById('questionForm').submit();
     }
     // reset error count for new submissions
