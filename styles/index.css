@@ -7,6 +7,7 @@ html {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     box-sizing: border-box;
+    height: 100%;
 }
   
 *,
@@ -22,11 +23,25 @@ body {
     font-size: 1.6rem;
     line-height: 2;
     font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', ‘sans-serif’;
-    color: 'black';   
+    color: 'black'; 
+}
+
+@media only screen 
+and (min-width : 1024px) 
+{
+    body {
+        height: 100%;
+    }
 }
 
 form {
     width: 80%;
+}
+
+@media only screen and (max-width:414px)  { 
+    form {
+        width: 95%; 
+    }
 }
 
 button {
@@ -37,7 +52,31 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 10rem;
+    height: 100%;
+}
+
+@media only screen 
+and (min-width: 320px) 
+and (orientation: portrait) { 
+    .form {
+        margin-top: 1rem; 
+        margin-bottom: 1rem;
+    }
+}
+
+@media only screen 
+and (min-width : 320px) 
+and (max-width : 1280px) 
+and (orientation : landscape) {
+    .form {
+        margin-top: 2rem; 
+        margin-bottom: 2rem;
+    }
+}
+
+
+.form-text {
+    margin: 0.5rem;
 }
 
 .form-errors {
@@ -56,7 +95,6 @@ button {
     border-radius: 5px;
     border: none;
     border: solid 1px #acacac;
-    text-indent: 1rem;
 
     -moz-box-shadow: inset 0px 1px 2px 1px rgba(0, 0, 0, 0.2);
     -webkit-box-shadow: inset 0px 1px 2px 1px rgba(0, 0, 0, 0.2);
@@ -64,7 +102,6 @@ button {
 }
 
 .form-input__top {
-    height: 3rem;
     margin-bottom: 2rem;
 }
 
@@ -106,7 +143,6 @@ button {
 
 .form-bottom__item-text {
     flex-grow: 4;
-    height: 3rem;
 }
 
 .form-bottom__item-remove-btn {
@@ -148,5 +184,10 @@ button {
 .form-buttons__button--cancel {
     background-color: 	#cfcfcf;
     margin-left: 2rem;
+}
+
+.custom-input {
+    height: 4rem;
+    text-indent: 1rem;
 }
 

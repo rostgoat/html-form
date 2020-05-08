@@ -38,18 +38,22 @@ function init() {
         radioInput.setAttribute('name', 'mc-answer')
         radioInput.setAttribute('value', `item_${index}`);
     
-        const name = document.createElement('div');
-        name.setAttribute('class', 'form-bottom__item-text form-input');
+        const nameContainer = document.createElement('div');
+        nameContainer.setAttribute('class', 'form-bottom__item-text form-input');
+        
+        const name = document.createElement('p');
+        name.setAttribute('class', 'form-text');
         name.appendChild(document.createTextNode(`${answer}`));
-    
+        
         const removeBtn = document.createElement('button');
         removeBtn.setAttribute('class', 'form-bottom__item-remove-btn');
         removeBtn.setAttribute('onClick', `removeAnswer("${index}")`);
         removeBtn.appendChild(document.createTextNode('x'));
-    
+        
+        nameContainer.appendChild(name);
         item.appendChild(image);
         item.appendChild(radioInput);
-        item.appendChild(name);
+        item.appendChild(nameContainer);
         item.appendChild(removeBtn);
     
         answersList.appendChild(item);
@@ -80,7 +84,7 @@ customAnswerButton.addEventListener('click', function(e) {
     radioInput.setAttribute('value', `item_${newIndex + 1}`);
 
     const name = document.createElement('input');
-    name.setAttribute('class', 'form-bottom__item-text form-input');
+    name.setAttribute('class', 'form-bottom__item-text form-input custom-input');
     name.setAttribute('placeholder', 'Enter your answer here..');
     name.setAttribute('type', 'input');
     name.setAttribute('value', '');
