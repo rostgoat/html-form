@@ -108,7 +108,10 @@ function createAnswerItem(answer, index, custom) {
  * Add custom multiple choice answer
  */
 customAnswerButton.addEventListener('click', function(e) {
+    // prevent form submission
     e.preventDefault();
+
+    // add new answer to DOM
     createAnswerItem('', 0, true);
 }) 
     
@@ -132,7 +135,11 @@ function removeAnswer(itemToRemove) {
  * @param {Event} e 
  */
 saveButton.addEventListener('click', function(e) {
+    // prevent form submission
     e.preventDefault();
+
+    // clear any DOM error messages
+    errors.textContent = ''
 
     // data to submit
     const data = validateData();
@@ -174,7 +181,7 @@ function validateData() {
     })
 
     // verify that user has entered an answer into the question box
-    if (longAnswer === '') {
+    if (longAnswer.value === '') {
         const error = document.createElement('span');
         error.textContent = "Please type an answer to the question!"
         errors.appendChild(error);
@@ -200,6 +207,7 @@ function validateData() {
  * Clear input forms
  */
 cancelButton.addEventListener('click', function(e) {
+    // prevent form submission
     e.preventDefault();
     // remove text from question form
     longAnswer.value = '';

@@ -20,9 +20,9 @@ A hint about the question.
 
 ### Answers
 
-- A user can pick one of the 4 default answers.
-- A user can delete any of the 4 default answers.
-- The answer text cannot be edited.
+- A user can pick one of the 4 default answers, or the newly added answers.
+- A user can delete any of the 4 default answers, or the newly added answers.
+- The answer text cannot be edited, unless it's manually added.
 
 ### Add Answer
 
