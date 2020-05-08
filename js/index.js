@@ -23,49 +23,85 @@ const answers = [
 function init() {
     // Loop through the array and set the elements into the DOM
     answers.forEach(function(answer, index) {
-        const item = document.createElement('div');
-        item.setAttribute('id', index);
-        item.setAttribute('class', 'form-bottom__item');
-    
-        const image = document.createElement('img');
-        image.setAttribute('class', 'form-bottom__item-img');
-        image.setAttribute('src', 'images/drag_icon.png');
-        image.setAttribute('alt', 'drag_icon.png');
-        image.setAttribute('role', 'asnwer icon')
-        image.setAttribute('aria-label', 'answer icon');
-    
-        const radioInput = document.createElement('input');
-        radioInput.setAttribute('class', 'form-bottom__item-radio-btn');
-        radioInput.setAttribute('type', 'radio');
-        radioInput.setAttribute('name', 'mc-answer')
-        radioInput.setAttribute('value', `item_${index}`);
-        radioInput.setAttribute('role', 'button')
-        radioInput.setAttribute('aria-label', 'answer radio button');
-    
-        const nameContainer = document.createElement('div');
+        createAnswerItem(answer, index, false);
+    });
+}
+
+/**
+ * Print default answers to DOM or print a new answer to DOM with input
+ * 
+ * @param {String} answer Default answer from answers array
+ * @param {Number} index Answer index from answers array
+ * @param {Boolean} custom Adding default answers to DOM or creating a new one
+ */
+function createAnswerItem(answer, index, custom) {
+    let name;
+    let nameContainer;
+    const newIndex = answers.length
+
+    // item parent element
+    const item = document.createElement('div');
+    custom ? item.setAttribute('id', newIndex + 1): item.setAttribute('id', index);
+    item.setAttribute('class', 'form-bottom__item');
+
+    // item draggable logo
+    const image = document.createElement('img');
+    image.setAttribute('class', 'form-bottom__item-img');
+    image.setAttribute('src', 'images/drag_icon.png');
+    image.setAttribute('alt', 'drag_icon.png');
+    image.setAttribute('role', 'answer icon')
+    image.setAttribute('aria-label', 'answer icon');
+
+    // item radio input
+    const radioInput = document.createElement('input');
+    radioInput.setAttribute('class', 'form-bottom__item-radio-btn');
+    radioInput.setAttribute('type', 'radio');
+    radioInput.setAttribute('name', 'mc-answer')
+    custom ? radioInput.setAttribute('value', `item_${newIndex + 1}`) : radioInput.setAttribute('value', `item_${index}`);
+    radioInput.setAttribute('role', 'button')
+    radioInput.setAttribute('aria-label', 'answer radio button');
+
+    // item input or text content
+    // if new answer is being added, create input
+    if (custom) {
+        name = document.createElement('input');
+        name.setAttribute('class', 'form-bottom__item-text form-input custom-input');
+        name.setAttribute('placeholder', 'Enter your custom answer here..');
+        name.setAttribute('type', 'input');
+        name.setAttribute('value', '');
+    } else { 
+        // if default items are being printed, print text content in a p tag
+        nameContainer = document.createElement('div');
         nameContainer.setAttribute('class', 'form-bottom__item-text form-input');
         
-        const name = document.createElement('p');
+        name = document.createElement('p');
         name.setAttribute('class', 'form-text');
-        name.setAttribute('role', 'asnwer option')
+        name.setAttribute('role', 'answer option')
         name.setAttribute('aria-label', 'answer option');
         name.appendChild(document.createTextNode(`${answer}`));
-        
-        const removeBtn = document.createElement('button');
-        removeBtn.setAttribute('class', 'form-bottom__item-remove-btn');
-        removeBtn.setAttribute('onClick', `removeAnswer("${index}")`);
-        removeBtn.setAttribute('role', 'button')
-        removeBtn.setAttribute('aria-label', 'remove answer')
-        removeBtn.appendChild(document.createTextNode('x'));
-        
-        nameContainer.appendChild(name);
-        item.appendChild(image);
-        item.appendChild(radioInput);
-        item.appendChild(nameContainer);
-        item.appendChild(removeBtn);
+    }
+
+    // item remove button which deletes the entire row
+    const removeBtn = document.createElement('button');
+    removeBtn.setAttribute('class', 'form-bottom__item-remove-btn');
+    custom ? removeBtn.setAttribute('onClick', `removeAnswer("${newIndex + 1}")`) : removeBtn.setAttribute('onClick', `removeAnswer("${index}")`);
+    removeBtn.setAttribute('role', 'button')
+    removeBtn.setAttribute('aria-label', 'remove answer')
+    removeBtn.appendChild(document.createTextNode('x'));
     
-        answersList.appendChild(item);
-    });
+    // append text container to DOM if printing default answers
+    if (!custom) {
+        nameContainer.appendChild(name);
+    }
+
+    // append elements to item parent row
+    item.appendChild(image);
+    item.appendChild(radioInput);
+    custom ? item.appendChild(name) : item.appendChild(nameContainer);
+    item.appendChild(removeBtn);
+
+    // append item to DOM list element
+    answersList.appendChild(item);
 }
 
 /**
@@ -73,47 +109,7 @@ function init() {
  */
 customAnswerButton.addEventListener('click', function(e) {
     e.preventDefault();
-    
-    const newIndex = answers.length
-
-    const item = document.createElement('div');
-    item.setAttribute('id', newIndex + 1);
-    item.setAttribute('class', 'form-bottom__item');
-
-    const image = document.createElement('img');
-    image.setAttribute('class', 'form-bottom__item-img');
-    image.setAttribute('src', 'images/drag_icon.png');
-    image.setAttribute('alt', 'drag_icon.png');
-    image.setAttribute('role', 'asnwer icon')
-    image.setAttribute('aria-label', 'answer icon');
-
-    const radioInput = document.createElement('input');
-    radioInput.setAttribute('class', 'form-bottom__item-radio-btn');
-    radioInput.setAttribute('type', 'radio');
-    radioInput.setAttribute('name', 'mc-answer')
-    radioInput.setAttribute('value', `item_${newIndex + 1}`);
-    radioInput.setAttribute('role', 'button')
-    radioInput.setAttribute('aria-label', 'answer radio button');
-
-    const name = document.createElement('input');
-    name.setAttribute('class', 'form-bottom__item-text form-input custom-input');
-    name.setAttribute('placeholder', 'Enter your custom answer here..');
-    name.setAttribute('type', 'input');
-    name.setAttribute('value', '');
-
-    const removeBtn = document.createElement('button');
-    removeBtn.setAttribute('class', 'form-bottom__item-remove-btn');
-    removeBtn.setAttribute('onClick', `removeAnswer("${newIndex + 1}")`);
-    removeBtn.setAttribute('role', 'button')
-    removeBtn.setAttribute('aria-label', 'remove answer')
-    removeBtn.appendChild(document.createTextNode('x'));
-
-    item.appendChild(image);
-    item.appendChild(radioInput);
-    item.appendChild(name);
-    item.appendChild(removeBtn);
-
-    answersList.appendChild(item);
+    createAnswerItem('', 0, true);
 }) 
     
 /**
@@ -177,6 +173,7 @@ function validateData() {
         }
     })
 
+    // verify that user has entered an answer into the question box
     if (longAnswer === '') {
         const error = document.createElement('span');
         error.textContent = "Please type an answer to the question!"
