@@ -136,6 +136,15 @@ and (orientation : landscape) {
     width: 2rem;
     height: 2rem;
     margin-right: 1rem;
+    margin-left: -3rem;
+}
+
+@media only screen 
+and (max-width: 600px)
+and (orientation: portrait) {
+    .form-bottom__item-img {
+        margin-left: 0;
+    }
 }
 
 .form-bottom__item-radio-btn {
