@@ -1,0 +1,5 @@
+Project I have built - Video Game Review Site (https://game-bible.herokuapp.com/)
+
+This is the API for it
+
+https://github.com/rostgoat/ea-blog-api

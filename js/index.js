@@ -37,11 +37,17 @@ function init() {
 function createAnswerItem(answer, index, custom) {
     let name;
     let nameContainer;
-    const newIndex = answers.length
+
+    // TODO: ADDED AFTER SUBMISSION
+    // 1. change const to let
+    // 2. only manipulate this if custom is true (if new multiple choice answer is being added)
+    // 3. removed the `+ 1` because it was causing indexing issues when removing elements
+    let newIndex;
+    if (custom) newIndex = answers.length;
 
     // item parent element
     const item = document.createElement('div');
-    custom ? item.setAttribute('id', newIndex + 1): item.setAttribute('id', index);
+    custom ? item.setAttribute('id', newIndex): item.setAttribute('id', index);
     item.setAttribute('class', 'form-bottom__item');
 
     // item draggable logo
@@ -57,7 +63,7 @@ function createAnswerItem(answer, index, custom) {
     radioInput.setAttribute('class', 'form-bottom__item-radio-btn');
     radioInput.setAttribute('type', 'radio');
     radioInput.setAttribute('name', 'mc-answer')
-    custom ? radioInput.setAttribute('value', `item_${newIndex + 1}`) : radioInput.setAttribute('value', `item_${index}`);
+    custom ? radioInput.setAttribute('value', `item_${newIndex}`) : radioInput.setAttribute('value', `item_${index}`);
     radioInput.setAttribute('role', 'button')
     radioInput.setAttribute('aria-label', 'answer radio button');
 
@@ -84,7 +90,7 @@ function createAnswerItem(answer, index, custom) {
     // item remove button which deletes the entire row
     const removeBtn = document.createElement('button');
     removeBtn.setAttribute('class', 'form-bottom__item-remove-btn');
-    custom ? removeBtn.setAttribute('onClick', `removeAnswer("${newIndex + 1}")`) : removeBtn.setAttribute('onClick', `removeAnswer("${index}")`);
+    custom ? removeBtn.setAttribute('onClick', `removeAnswer("${newIndex}")`) : removeBtn.setAttribute('onClick', `removeAnswer("${index}")`);
     removeBtn.setAttribute('role', 'button')
     removeBtn.setAttribute('aria-label', 'remove answer')
     removeBtn.appendChild(document.createTextNode('x'));
@@ -102,6 +108,10 @@ function createAnswerItem(answer, index, custom) {
 
     // append item to DOM list element
     answersList.appendChild(item);
+
+    // TODO: added after submission
+    // 1. adding for length increase and to keep track of item index for deletion
+    if (custom) answers.push('')
 }
 
 /**
