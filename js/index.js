@@ -44,7 +44,7 @@ function createAnswerItem(answer, index, custom) {
     // 3. removed the `+ 1` because it was causing indexing issues when removing elements
     let newIndex;
     if (custom) newIndex = answers.length;
-
++
     // item parent element
     const item = document.createElement('div');
     custom ? item.setAttribute('id', newIndex): item.setAttribute('id', index);
